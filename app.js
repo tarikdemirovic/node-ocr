@@ -5,7 +5,8 @@ var bodyParser = require('body-parser');
 var webroute = require('./routes/web');
 var ocrroute = require('./routes/ocr');
 
-var port = process.env.PORT || 3000;
+var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 // add middleware
 app.use('/assets', express.static(__dirname + '/public'));
@@ -18,4 +19,4 @@ app.use('/', webroute);
 app.use('/api', ocrroute);
 
 // start app
-app.listen(port);
+app.listen(port, server_ip_address);
