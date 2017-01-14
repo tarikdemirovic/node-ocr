@@ -1,0 +1,69 @@
+<!doctype html>
+
+<html ng-app="meanocr">
+	
+	<head>
+		<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
+
+    	<title>NodeOCR</title>
+
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="/assets/styles/style.css">
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+	    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+	    <script src="assets/js/ng-file-upload.min.js"></script>
+	    <script src="assets/js/core.js"></script>
+	    <script src="assets/js/script.js"></script>
+	</head>
+
+	<body ng-controller="mainController">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="container upload-box" ng-show="!loader.loading" ngf-select="upload($file)" ngf-drop="upload($file)" ngf-drag-over-class="'dragover'" accept="image/*" ngf-pattern="'image/*'">
+						<div class="row">
+							<i class="fa fa-cloud-upload upload-icon"></i>
+						</div>
+						<div class="row upload-text">
+							<span>Drag and drop or select photo with text</span>
+						</div>
+					</div>
+					<div class="container upload-box" ng-show="loader.loading">
+						<div class="row">
+							<i class="fa fa-spinner fa-spin upload-icon"></i>
+						</div>
+						<div class="row upload-text">
+							<span>Uploading and processing</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="container text-results">
+							<textarea ng-bind="resultText" readonly="" class="form-control" rows="15" id="results"></textarea>
+						</div>
+					</div>
+					<div class="row copy">
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<button id="copyButton" class="btn btn-info btn-copy">
+								<span>Copy to clipboard</span>
+							    <i class="fa fa-files-o" aria-hidden="true"></i>
+							</button>
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+	</body>
+</html>
